@@ -5,6 +5,7 @@ services:
     build: app
   server:
     build: server
+    stop_signal: SIGINT
   db:
     image: mongo
   redis:
