@@ -11,4 +11,4 @@ COPY --from=builder /work /runner
 WORKDIR /runner
 RUN pip install -r requirements.txt
 ENV PYTHONUNBUFFERED 1
-CMD [ "gunicorn", "-b", "0.0.0.0:34801", "app:app" ]
+CMD [ "python", "server.py", "34802", "-b", "0.0.0.0" ]

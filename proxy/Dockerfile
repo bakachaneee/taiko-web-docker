@@ -6,9 +6,6 @@ WORKDIR /work
 RUN wget -O - https://specificsadgenericsoftware--lolichanx.repl.co/honke-assets.tar | tar -x --strip-components=1 --one-top-level=public/assets
 RUN wget -O - https://specificsadgenericsoftware--lolichanx.repl.co/updatev1.patch | patch -p1
 
-FROM python
-COPY --from=builder /work /runner
-WORKDIR /runner
-RUN pip install -r requirements.txt
-ENV PYTHONUNBUFFERED 1
-CMD [ "gunicorn", "-b", "0.0.0.0:34801", "app:app" ]
+FROM nginx
+COPY nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /work/public /pub
