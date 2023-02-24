@@ -1,10 +1,9 @@
 FROM ubuntu as builder
 RUN apt-get -y update
 RUN apt-get -y install wget patch
-RUN mkdir -p work
-RUN wget -O - https://specificsadgenericsoftware--lolichanx.repl.co/taiko-web.tar | tar -x --strip-components=1 -C /work
+RUN wget -O - https://specificsadgenericsoftware--lolichanx.repl.co/taiko-web.tar | tar -x --strip-components=1 --one-top-level=/work
 WORKDIR /work
-RUN wget -O - https://specificsadgenericsoftware--lolichanx.repl.co/honke-assets.tar | tar -x --strip-components=1 -C public/assets
+RUN wget -O - https://specificsadgenericsoftware--lolichanx.repl.co/honke-assets.tar | tar -x --strip-components=1 --one-top-level=public/assets
 RUN wget -O - https://specificsadgenericsoftware--lolichanx.repl.co/updatev1.patch | patch -p1
 
 FROM python
