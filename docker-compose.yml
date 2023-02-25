@@ -7,7 +7,7 @@ services:
     build: server
     stop_signal: SIGINT
   db:
-    image: mongo
+    build: db
   redis:
     image: redis
   proxy:
