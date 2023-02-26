@@ -7,10 +7,15 @@ services:
     build: server
     stop_signal: SIGINT
   db:
-    build: db
+    image: mongo
   redis:
     image: redis
   proxy:
     build: proxy
     ports:
       - 9999:80
+  teriyaki-client:
+    build: teriyaki-client
+    environment:
+      - DB_HOST=db
+      - DB_PORT=27017
