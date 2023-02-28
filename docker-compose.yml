@@ -12,10 +12,11 @@ services:
     image: redis
   proxy:
     build: proxy
-    ports:
-      - 9999:80
-  teriyaki-client:
-    build: teriyaki-client
-    environment:
-      - DB_HOST=db
-      - DB_PORT=27017
+  #teriyaki-client:
+  #  build: teriyaki-client
+  #  environment:
+  #    - DB_HOST=db
+  #    - DB_PORT=27017
+  tunnel:
+    image: cloudflare/cloudflared
+    command: --url http://proxy:80/
